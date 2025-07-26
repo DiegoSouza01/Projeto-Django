@@ -52,6 +52,7 @@ Siga os passos abaixo para configurar e executar a calculadora localmente:
    python manage.py runserver
 
 9 **Acesse a aplicação:**
+--
 *Abra o navegador e vá para ```http://127.0.0.1:8000/login/```.
 *Faça login com as credenciais criadas pelo comando ```createsuperuser```.
 
