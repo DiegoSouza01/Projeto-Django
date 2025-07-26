@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora Avançada</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>Calculadora Avançada</h2>
+      <p>Calculadora com histórico de operações</p>
+      <div class="display">{{ result|default:"0" }}</div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="buttons">
+          <button type="button" class="clear">C</button>
+          <button type="button" class="operator">%</button>
+          <button type="button" class="operator">×</button>
+          <button type="button">9</button>
+          <button type="button">8</button>
+          <button type="button" class="operator">÷</button>
+          <button type="button">7</button>
+          <button type="button">6</button>
+          <button type="button" class="operator">+</button>
+          <button type="button">5</button>
+          <button type="button">4</button>
+          <button type="button" class="operator">-</button>
+          <button type="button">3</button>
+          <button type="button">2</button>
+          <button type="submit" class="operator">=</button>
+          <button type="button">1</button>
+          <button type="button">0</button>
+          <button type="button">.</button>
+        </div>
+        <input type="hidden" name="expression" id="expression" />
+      </form>
+    </div>
+    <div class="history">
+      <h3>Histórico</h3>
+      {% for op in history %}
+      <p>{{ op.expression }} = {{ op.result }}</p>
+      {% endfor %}
+    </div>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+/* Estilos base */
+body {
+  background: #e3ef39;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.calculator {
+  width: 90%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 15px;
+  background: #00c3ff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.display {
+  background: #1c2526;
+  padding: 10px;
+  text-align: right;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  word-wrap: break-word;
+  min-height: 2.5rem;
+  width: 95%;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+button {
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.operator {
+  background: #0400ff;
+  color: white;
+}
+
+.clear {
+  background: #ff0000;
+  color: white;
+}
+
+.history {
+  width: 90%;
+  max-width: 180px;
+  right: 15px;
+  top: 15px;
+  background: #2f2f4f;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 600px) {
+  .calculator {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .display {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .history {
+    position: static;
+    width: 100%;
+    margin-top: 15px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator {
+    width: 98%;
+    padding: 8px;
+  }
+
+  .display {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+
+  button {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .history {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .calculator {
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .display {
+    font-size: 1rem;
+    padding: 4px;
+  }
+
+  button {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .history {
+    padding: 6px;
+    font-size: 0.7rem;
+  }
+}
