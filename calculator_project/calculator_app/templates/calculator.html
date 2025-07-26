@@ -38,7 +38,7 @@
     <div class="history">
       <h3>Histórico</h3>
       {% for op in history %}
-      <p>{{ op.expression }} = {{ op.result }}</p>
+      <p>{{ op.parametros }} = {{ op.resultado }}</p>
       {% endfor %}
     </div>
     <script src="{% static 'js/app.js' %}"></script>

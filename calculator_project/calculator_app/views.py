@@ -1,12 +1,8 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
-from .models import Operation
+from django.contrib.auth.decorators import login_required
 import re
+from .models import Operation
 
 def login_view(request):
     if request.method == 'POST':
@@ -15,19 +11,24 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/calculator/')
+            return redirect('calculator')
+        else:
+            return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
     return render(request, 'login.html')
 
 @login_required
 def calculator(request):
-    history = Operation.objects.filter(user=request.user).order_by('-timestamp')[:5]
-    result = None
-    if request.method == 'POST':
-        expression = request.POST.get('expression', '')
-    try:
-        result = eval(expression)
-        operation = Operation(user=request.user, expression=expression, result=str(result))
-        operation.save()
-    except Exception:
-        result = "Erro"
-    return render(request, 'calculator.html', {'history': history, 'result': result})
+    history = Operation.objects.filter(user=request.user).order_by('-dt_inclusao')[:10]
+    resultado = None
+    if request.method == "POST":
+        parametros = request.POST.get("expression", "")
+        if re.match(r'^[0-9+\-*/. ]+$', parametros):
+            try:
+                resultado = eval(parametros)
+                operation = Operation(user=request.user, parametros=parametros, resultado=str(resultado))
+                operation.save()
+            except Exception:
+                resultado = "Erro"
+        else:
+            resultado = "Expressão inválida"
+    return render(request, "calculator.html", {"resultado": resultado, "history": history})
